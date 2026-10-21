@@ -84,9 +84,9 @@ fun TipTimeLayout() {
                 .align(alignment = Alignment.Start)
         )
         EditNumberField(
-            label = R.string.bill_amount,
-            value = amountInput,
-            onValueChange = { amountInput = it },
+            label = R.string.how_was_the_service,
+            value = "",
+            onValueChange = { },
             modifier = Modifier
                 .padding(bottom = 32.dp)
                 .fillMaxWidth()
