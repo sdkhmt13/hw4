@@ -7,12 +7,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import mooc.vandy.java4android.artspace.ui.theme.ArtSpaceTheme
@@ -54,6 +58,8 @@ fun ArtSpaceApp() {
         verticalArrangement = Arrangement.Center
     ) {
         ArtworkWall(artwork = artwork)
+        Spacer(modifier = Modifier.height(32.dp))
+        ArtworkInfo(artwork = artwork)
     }
 }
 
@@ -72,6 +78,26 @@ fun ArtworkWall(artwork: Artwork, modifier: Modifier = Modifier) {
                 .height(400.dp)
                 .padding(24.dp)
         )
+    }
+}
+
+@Composable
+fun ArtworkInfo(artwork: Artwork, modifier: Modifier = Modifier) {
+    Surface(
+        modifier = modifier.fillMaxWidth(),
+        color = MaterialTheme.colorScheme.surfaceVariant
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = artwork.title,
+                style = MaterialTheme.typography.headlineSmall
+            )
+            Text(
+                text = "${artwork.artist} (${artwork.year})",
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Bold
+            )
+        }
     }
 }
 
