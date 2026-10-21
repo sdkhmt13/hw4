@@ -7,12 +7,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -60,6 +63,11 @@ fun ArtSpaceApp() {
         ArtworkWall(artwork = artwork)
         Spacer(modifier = Modifier.height(32.dp))
         ArtworkInfo(artwork = artwork)
+        Spacer(modifier = Modifier.height(32.dp))
+        DisplayController(
+            onPreviousClick = { },
+            onNextClick = { }
+        )
     }
 }
 
@@ -75,7 +83,7 @@ fun ArtworkWall(artwork: Artwork, modifier: Modifier = Modifier) {
             contentScale = ContentScale.Fit,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(400.dp)
+                .height(320.dp)
                 .padding(24.dp)
         )
     }
@@ -97,6 +105,31 @@ fun ArtworkInfo(artwork: Artwork, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Bold
             )
+        }
+    }
+}
+
+@Composable
+fun DisplayController(
+    onPreviousClick: () -> Unit,
+    onNextClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Button(
+            onClick = onPreviousClick,
+            modifier = Modifier.width(140.dp)
+        ) {
+            Text("Previous")
+        }
+        Button(
+            onClick = onNextClick,
+            modifier = Modifier.width(140.dp)
+        ) {
+            Text("Next")
         }
     }
 }
