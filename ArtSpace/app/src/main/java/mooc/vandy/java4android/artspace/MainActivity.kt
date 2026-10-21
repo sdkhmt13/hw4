@@ -65,8 +65,12 @@ fun ArtSpaceApp() {
         ArtworkInfo(artwork = artwork)
         Spacer(modifier = Modifier.height(32.dp))
         DisplayController(
-            onPreviousClick = { },
-            onNextClick = { }
+            onPreviousClick = {
+                currentIndex = if (currentIndex == 0) artworks.lastIndex else currentIndex - 1
+            },
+            onNextClick = {
+                currentIndex = if (currentIndex == artworks.lastIndex) 0 else currentIndex + 1
+            }
         )
     }
 }
